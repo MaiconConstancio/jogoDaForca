@@ -96,7 +96,7 @@ namespace jogoDaForca
                 Console.Clear();
             }
 
-            Console.Clear(); // Apaga o resto das mensagens para parecer que mudou de pagina
+            
             Console.ForegroundColor = ConsoleColor.Cyan; // Mudou de cor para ciano
             Console.WriteLine($"Espero ter feito seu dia feliz! tudo de bom ^-^");
             Console.ForegroundColor = ConsoleColor.Red; // Mudou de cor para Vermelho
