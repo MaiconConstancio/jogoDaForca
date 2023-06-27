@@ -27,23 +27,29 @@ namespace jogoDaForca
 
                 for (int i = 0; i < letrasDescobertas.Length; i++)
                 {
+                    
                     letrasDescobertas[i] = '_';
+                    
                 }
 
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Bem-vindo ao Jogo da Forca!");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Adivinhe a palavra secreta.");
+                Console.ForegroundColor = ConsoleColor.White;
 
                 while (true)
                 {
                     Console.WriteLine();
 
                     // Mostra as letras já descobertas
-                    Console.Write("Palavra: ");
+                    Console.Write("\nPalavra: ");
+                    Console.ForegroundColor = ConsoleColor.Yellow; // Muda a cor dos ______ nas letras
                     foreach (char letra in letrasDescobertas)
                     {
                         Console.Write(letra + " ");
                     }
-
+                    Console.ForegroundColor = ConsoleColor.White; // Volta para a cor branca
                     Console.WriteLine();
                     Console.Write("Digite uma letra: ");
                     char letraDigitada = Console.ReadKey().KeyChar;
@@ -64,11 +70,19 @@ namespace jogoDaForca
                     {
                         erros++;
                         Console.WriteLine();
-                        Console.WriteLine("Você errou! Tentativas restantes: " + (maximoErros - erros));
-
+                        Console.Write("Você errou! Tentativas restantes: ");
+                        Console.ForegroundColor = ConsoleColor.Red; // mudou a cor das tentativas para vermelho
+                        Console.WriteLine($"{maximoErros - erros}.");
+                        Console.ForegroundColor = ConsoleColor.White; // voltar para o branco
                         if (erros == maximoErros)
                         {
-                            Console.WriteLine("Você perdeu! A palavra secreta era: " + palavraSecreta);
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("\nVocê perdeu!");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write(" A palavra secreta era: ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine($"{palavraSecreta}\n");
+                            Console.ForegroundColor = ConsoleColor.White;
                             break;
                         }
                     }
@@ -77,23 +91,30 @@ namespace jogoDaForca
                         // Verifica se o jogador descobriu todas as letras da palavra
                         if (new string(letrasDescobertas) == palavraSecreta)
                         {
-                            Console.WriteLine();
-                            Console.WriteLine("Parabéns! Você acertou a palavra secreta: " + palavraSecreta);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write("\n\nParabéns! Você acertou a palavra secreta: ");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"{palavraSecreta}\n");
+                            Console.ForegroundColor = ConsoleColor.White;
                             break;
                         }
                     }
                 }
 
-                Console.WriteLine();
-                Console.Write("Deseja jogar novamente? (s/n): ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write("Deseja jogar novamente?");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(" (y/n): ");
+                Console.ForegroundColor = ConsoleColor.White;
                 string resposta = Console.ReadLine().ToLower();
 
-                if (resposta != "s")
+                if (resposta != "y")
                 {
                     jogarNovamente = false;
+                    
                 }
+                Console.Clear(); // apagar o resto das msgs
 
-                Console.Clear();
             }
 
             
